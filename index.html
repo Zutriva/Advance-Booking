@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZUTRIVA Booking Form</title>
+    <style>
+        body {
+            background-image: url('image.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .container {
+            width: 40%;
+            margin: 20px auto;
+        }
+        .container1, .container2 {
+            width: 42%;
+            margin: 20px auto;
+        }
+        .container2 {
+            background-color: transparent;
+        }
+        .submit-btn {
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: auto;
+            display: block;
+            margin-left: auto;
+        }
+       @media (max-width: 1080px) {
+    body {
+        background-image: url('image1.jpg'); 
+background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+
+    }
+
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .container1, .container2 {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+}
+
+        img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        p { color: white; }
+        h1, h2, h3 { text-align: center; color: white; }
+        h1 { font-size: 20px; }
+        h2 { font-size: 16px; }
+        h3 { font-size: 14px; }
+        label { 
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            color: white;
+        }
+        select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            outline: none;
+            color: white;
+        }
+        select option {
+            background: #001f3f;
+            color: white;
+        }
+        input, button {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            outline: none;
+            color: white;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover { background: #0056b3; }
+        #payment-container, #tour-list-container, #qr-container, #tour-category-container, #from-madurai, #coimbatore-container { display: none; }
+    </style>
+</head>
+<body>
+<div class="container1">
+    <img src="logo.jpg" alt="Zutriva Logo">
+</div>
+
+<div class="container">
+    <h1>ZUTRIVA! BOOKING FORM</h1>
+    <h3>YOU BOOK! WE PLAN! MAGIC HAPPENS!</h3>
+</div>
+<div class="container">
+    <label>Name</label>
+    <input type="text" id="name">
+    <label>Mobile Number</label>
+    <input type="text" id="mobile">
+    <label>WhatsApp Number</label>
+    <input type="text" id="whatsapp">
+</div>
+<div class="container">
+    <label>Tour Type</label>
+    <select id="tour-type">
+        <option value="" selected disabled>Choose</option>
+        <option value="group">Group Tour</option>
+        <option value="couple">Couple Tour</option>
+        <option value="family">Family Tour</option>
+    </select>
+</div>
+<div class="container">
+    <label>NOTE:</label>
+    <p style="font-size: 14px;">If the Child age is 13 and above He/She should consider as Adult Need to Pay Advance ₹1000 per person </p>
+    <p style="font-size: 14px;">Else He/She Under 13 No need to Pay Advance</p>
+    <p style="font-size: 14px;">Proof of Child Was Collect On Balance Payment</p>
+</div>
+<div class="container">
+    <label>No. of Adult</label>
+    <input type="number" id="persons" min="1">
+    <label>Name of Others</label>
+    <input type="text" id="others" placeholder='Please use "," after each name. Eg: Nila, Surya . Solo Traveler Use "Nan"/"None"' style="color: white;">
+    <label>Relations</label>
+    <input type="text" id="relations" placeholder='Wife, Son, Daughter - No Unmarried Lovers' style="color: white;">
+</div>
+<div class="container">
+    <label>Opened Group Tour</label>
+    <p style="font-size: 15px;">Currently Opened group from Madurai</p>
+    <p><span style="font-size: 14px; font-weight: bold;">May 01 2025</span><span style="font-size: 14px;"> - MDU-KQN - Madurai to Kodaikanal</span></p>
+    <label>Date of Travel</label>
+    <input type="date" id="travel-date">
+</div>
+<div class="container">
+    <label>Departure From</label>
+    <select id="departure">
+        <option value="" selected disabled>Choose</option>
+        <option value="madurai">Madurai</option>
+        <option value="coimbatore">Coimbatore</option>
+    </select>
+</div>
+<div id="from-madurai" class="container">
+    <h2>FROM MADURAI</h2>
+    <label>Tour Category</label>
+    <select id="tour-category">
+        <option value="" selected disabled>Choose</option>
+        <option value="beach">Beach Journeys</option>
+        <option value="hills">Hills Station Trips</option>
+        <option value="temple">Temple Tours</option>
+    </select>
+</div>
+<div id="coimbatore-container" class="container">
+    <h2>FROM COIMBATORE</h2>
+    <p>Oops! We're Sorry!</p>
+    <p>Currently We're Working Under To Depart You from Kobvai!</p>
+    <p>Stay Connect With Us</p>
+    <img src="cbesad.jpg" alt="Kovai Depart Zutriva">
+</div>
+<div id="tour-list-container" class="container">
+    <label>Available Tours</label>
+    <select id="tour-list">
+        <option value="" selected disabled>Choose</option>
+    </select>
+</div>
+<div id="payment-container" class="container">
+    <h2>Proceeding to Pay Advance Amount</h2>
+    <p>Advance For Per Head is ₹1000</p>
+    <p>Total Advance Amount for <span id="total-persons">0</span> Persons is <span id="total-amount">₹0</span></p>
+    <button id="upi-button" style="background: #e65100; color: white; font-size: 16px; border: none; padding: 6px 12px; cursor: pointer; border-radius: 5px; width: auto; display: block; margin: 10px auto;">
+        Pay Advance
+    </button>
+</div>
+<div id="qr-container" class="container">
+    <h2>Upload Payment Screenshot</h2>
+    <input type="file" id="payment-proof" accept="image/*">
+</div>
+<div class="container2">
+    <button id="submit-btn" class="submit-btn">Submit</button>
+</div>
+
+<p style="text-align: center; font-size: 12px;">© 2025 All Rights Reserved By Zutriva</p>
+
+<script>
+document.getElementById("tour-type").addEventListener("change", function() {
+    let tourType = this.value;
+    let personsInput = document.getElementById("persons");
+    let persons = parseInt(personsInput.value) || 0;
+
+    if (tourType === "couple" && persons > 2) {
+        alert("Couples Can,t Be Above Two Right!");
+        personsInput.value = "2";
+    } else if (tourType === "family" && persons > 4) {
+        alert("Family Tours are limited to 4 persons For Private Tour or Join Group tour if opened or Contact 6374979879 for larger private tours.");
+        personsInput.value = "4";
+    } else if (tourType === "group" && persons > 20) {
+        alert("Contact 6374979879 to book above 20 persons for a private Group Tour");
+        personsInput.value = "20";
+    }
+
+    let amount = (parseInt(personsInput.value) || 0) * 1000;
+    document.getElementById("total-persons").textContent = personsInput.value || "0";
+    document.getElementById("total-amount").textContent = `₹${amount}`;
+});
+
+document.getElementById("persons").addEventListener("input", function() {
+    let tourType = document.getElementById("tour-type").value;
+    let persons = parseInt(this.value) || 0;
+
+    if (tourType === "couple" && persons > 2) {
+        alert("Couples Can,t Be Above Two Right!");
+        this.value = "2";
+        persons = 2;
+    } else if (tourType === "family" && persons > 4) {
+        alert("Family Tours are limited to 4 persons For Private Tour or Join Group tour if opened or Contact 6374979879 for larger private tours.");
+        this.value = "4";
+        persons = 4;
+    } else if (tourType === "group" && persons > 20) {
+        alert("Group Tours are limited to 20 persons. Contact 6374979879 for larger private tours.");
+        this.value = "20";
+        persons = 20;
+    }
+
+    let amount = persons * 1000;
+    document.getElementById("total-persons").textContent = persons;
+    document.getElementById("total-amount").textContent = `₹${amount}`;
+});
+
+document.getElementById("submit-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    let submitButton = document.getElementById("submit-btn");
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+    submitButton.style.background = "#888";
+
+    let requiredFields = [
+        { id: "name", message: "Name is required." },
+        { id: "mobile", message: "Mobile Number is required." },
+        { id: "whatsapp", message: "WhatsApp Number is required." },
+        { id: "tour-type", message: "Tour Type is required." },
+        { id: "persons", message: "Number of Persons is required." },
+        { id: "others", message: "Name of Others is required." },
+        { id: "relations", message: "Relations field is required." },
+        { id: "travel-date", message: "Date of Travel is required." },
+        { id: "departure", message: "Departure location is required." },
+        { id: "tour-category", message: "Tour Category is required." },
+        { id: "tour-list", message: "You must select an available tour." },
+        { id: "payment-proof", message: "Payment proof is required." }
+    ];
+
+    for (let field of requiredFields) {
+        let inputElement = document.getElementById(field.id);
+        if (!inputElement.value.trim()) {
+            alert(field.message);
+            inputElement.focus();
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
+            submitButton.style.background = "#007BFF";
+            return;
+        }
+    }
+
+    let name = document.getElementById("name").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let whatsapp = document.getElementById("whatsapp").value.trim();
+    let tourType = document.getElementById("tour-type").value;
+    let persons = document.getElementById("persons").value;
+    let others = document.getElementById("others").value.trim();
+    let relations = document.getElementById("relations").value.trim();
+    let travelDate = document.getElementById("travel-date").value;
+    let departure = document.getElementById("departure").value;
+    let tourCategory = document.getElementById("tour-category").value;
+    let tourList = document.getElementById("tour-list").value;
+    let paymentProof = document.getElementById("payment-proof").files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(paymentProof);
+    reader.onload = function() {
+        let base64Image = reader.result.split(',')[1];
+
+        let data = {
+            name: name,
+            mobile: mobile,
+            whatsapp: whatsapp,
+            tourType: tourType,
+            persons: persons,
+            others: others,
+            relations: relations,
+            travelDate: travelDate,
+            departure: departure,
+            tourCategory: tourCategory,
+            tourList: tourList,
+            image: base64Image,
+            mimeType: paymentProof.type,
+            imageName: paymentProof.name
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbxUyvWDFpAk1A7iQ-yTpga4-8NsJGFJpZGcJAoFgNWd4Q68t6UeCTlQdx_8GddX10GHPQ/exec", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" },
+            mode: "no-cors"
+        })
+        .then(() => {
+            alert("Booking submitted successfully!");
+            document.getElementById("name").value = "";
+            document.getElementById("mobile").value = "";
+            document.getElementById("whatsapp").value = "";
+            document.getElementById("tour-type").value = "";
+            document.getElementById("persons").value = "";
+            document.getElementById("others").value = "";
+            document.getElementById("relations").value = "";
+            document.getElementById("travel-date").value = "";
+            document.getElementById("departure").value = "";
+            document.getElementById("tour-category").value = "";
+            document.getElementById("tour-list").value = "";
+            document.getElementById("payment-proof").value = "";
+            document.getElementById("from-madurai").style.display = "none";
+            document.getElementById("coimbatore-container").style.display = "none";
+            document.getElementById("tour-list-container").style.display = "none";
+            document.getElementById("payment-container").style.display = "none";
+            document.getElementById("qr-container").style.display = "none";
+            document.getElementById("total-persons").textContent = "0";
+            document.getElementById("total-amount").textContent = "₹0";
+            setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit";
+                submitButton.style.background = "#007BFF";
+            }, 500);
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
+            submitButton.style.background = "#007BFF";
+        });
+    };
+});
+
+document.getElementById("departure").addEventListener("change", function() {
+    let departure = this.value;
+    if (departure === "madurai") {
+        document.getElementById("from-madurai").style.display = "block";
+        document.getElementById("coimbatore-container").style.display = "none";
+    } else if (departure === "coimbatore") {
+        document.getElementById("from-madurai").style.display = "none";
+        document.getElementById("coimbatore-container").style.display = "block";
+    }
+    document.getElementById("tour-category").value = "";
+    document.getElementById("tour-list").innerHTML = "<option value='' selected disabled>Choose</option>";
+    document.getElementById("tour-list-container").style.display = "none";
+    document.getElementById("payment-container").style.display = "none";
+    document.getElementById("qr-container").style.display = "none";
+});
+
+document.getElementById("tour-category").addEventListener("change", function() {
+    let tourCategory = this.value;
+    let tourList = document.getElementById("tour-list");
+    tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+
+    const tours = {
+        "beach": [
+            "Chidambaram Beach Journey",
+            "Mahabalipuram Beach Journey",
+            "Rameshwaram Beach Journey",
+            "Kanyakumari Beach Journey",
+            "Thoothukudi Beach Journey",
+            "Velankanni Beach Journey"
+        ],
+        "hills": [
+            "Kolli Hills Station Trip",
+            "Kodaikanal Hills Station Trip",
+            "Ooty Hills Station Trip",
+            "Valparai Hills Station Trip",
+            "Yercaud Hills Station Trip"
+        ],
+        "temple": [
+            "Arupadai Murugan Temple Tour",
+            "Kanyakumari Temple Tour",
+            "Coimbatore Temple Tour",
+            "Chidambaram Temple Tour",
+            "Kumbakonam Temple Tour",
+            "Rameshwaram Temple Tour",
+            "Srirangam Temple Tour",
+            "Thanjavur Temple Tour",
+            "Thiruvannamalai Temple Tour",
+            "Velankanni Temple Tour"
+        ]
+    };
+
+    if (tours[tourCategory]) {
+        tours[tourCategory].forEach(tour => {
+            let option = document.createElement("option");
+            option.value = tour;
+            option.textContent = tour;
+            tourList.appendChild(option);
+        });
+    }
+    document.getElementById("tour-list-container").style.display = "block";
+});
+
+document.getElementById("tour-list").addEventListener("change", function() {
+    let persons = document.getElementById("persons").value;
+    let amount = persons * 1000;
+    document.getElementById("upi-button").onclick = function() {
+        window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+    };
+    document.getElementById("payment-container").style.display = "block";
+    document.getElementById("qr-container").style.display = "block";
+});
+</script>
+</body>
+</html>
