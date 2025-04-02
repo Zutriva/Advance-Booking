@@ -265,7 +265,7 @@ document.getElementById("tour-type").addEventListener("change", function() {
     let persons = parseInt(personsInput.value) || 0;
 
     if (tourType === "couple" && persons > 2) {
-        alert("Couples Can,t Be Above Two Right!");
+        alert("Couples Can't Be Above Two Right!");
         personsInput.value = "2";
     } else if (tourType === "family" && persons > 4) {
         alert("Family Tours are limited to 4 persons For Private Tour or Join Group tour if opened or Contact 6374979879 for larger private tours.");
@@ -285,7 +285,7 @@ document.getElementById("persons").addEventListener("input", function() {
     let persons = parseInt(this.value) || 0;
 
     if (tourType === "couple" && persons > 2) {
-        alert("Couples Can,t Be Above Two Right!");
+        alert("Couples Can't Be Above Two Right!");
         this.value = "2";
         persons = 2;
     } else if (tourType === "family" && persons > 4) {
