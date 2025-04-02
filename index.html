@@ -53,20 +53,24 @@
             margin-left: auto;
         }
        @media (max-width: 1080px) {
-    body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('image1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1; /* Puts the background behind all content */
-}
+    body, html {
+        min-height: 100vh; /* Ensure full height */
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
 
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('image1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1; /* Keeps background behind content */
+    }
 
     .container {
         width: 90%;
@@ -77,8 +81,8 @@
         width: 94%;
         margin: 20px auto;
     }
-
 }
+
 
         img {
             width: 100%;
