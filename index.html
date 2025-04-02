@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZUTRIVA Booking Form</title>
     <style>
-        body {
-            background-image: url('image.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-            text-align: left;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
+       body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Puts the background behind all content */
+}
+
         .container {
             max-width: 90%;
             background: rgba(255, 255, 255, 0.1);
@@ -51,19 +53,20 @@
             margin-left: auto;
         }
        @media (max-width: 1080px) {
-    body {
-        background-image: url('image1.jpg'); 
-background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-            text-align: left;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+    body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('image1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Puts the background behind all content */
+}
 
-    }
 
     .container {
         width: 90%;
