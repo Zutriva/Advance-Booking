@@ -5,31 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZUTRIVA Booking Form</title>
     <style>
-       body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1; /* Puts the background behind all content */
-    font-family: Arial, sans-serif;
-
-}
-html, body {
-    min-height: 100vh; /* Ensures full height */
-    display: flex;
-    flex-direction: column;
-}
-
-.container2 {
-    margin-top: auto; /* Pushes footer to bottom when content is less */
-}
-
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            font-family: Arial, sans-serif;
+        }
+        html, body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
         .container {
             max-width: 90%;
             background: rgba(255, 255, 255, 0.1);
@@ -44,11 +38,14 @@ html, body {
             width: 40%;
             margin: 20px auto;
         }
-        .container1, .container2 {
+        .container1 {
             width: 42%;
             margin: 10px auto;
+
         }
         .container2 {
+            width: 42%;
+            margin: 10px auto;
             background-color: transparent;
         }
         .submit-btn {
@@ -63,38 +60,33 @@ html, body {
             display: block;
             margin-left: auto;
         }
-       @media (max-width: 1080px) {
-    body, html {
-        min-height: 100vh; /* Ensure full height */
-        overflow-x: hidden; /* Prevent horizontal scroll */
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-image: url('image1.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: -1; /* Keeps background behind content */
-    }
-
-    .container {
-        width: 85%;
-        margin: 10px auto;
-    }
-
-    .container1, .container2 {
-        width: 95%;
-        margin: 10px auto;
-    }
-}
-
-
+        @media (max-width: 1080px) {
+            body, html {
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-image: url('image1.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: -1;
+            }
+            .container {
+                width: 85%;
+                margin: 10px auto;
+            }
+            .container1, .container2 {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
         img {
             width: 100%;
             max-width: 100%;
@@ -102,7 +94,6 @@ html, body {
             margin: 0 auto 10px;
             border-radius: 10px;
         }
-
         ::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
@@ -156,7 +147,7 @@ html, body {
             margin-top: 20px;
         }
         button:hover { background: #0056b3; }
-        #payment-container, #tour-list-container, #qr-container, #tour-category-container, #from-madurai, #coimbatore-container { display: none; }
+        #payment-container, #tour-list-container, #qr-container, #tour-category-container, #from-madurai, #coimbatore-container, #group-tour-options { display: none; }
     </style>
 </head>
 <body>
@@ -177,15 +168,6 @@ html, body {
     <input type="text" id="whatsapp">
 </div>
 <div class="container">
-    <label>Tour Type</label>
-    <select id="tour-type">
-        <option value="" selected disabled>Choose</option>
-        <option value="group">Group Tour</option>
-        <option value="couple">Couple Tour</option>
-        <option value="family">Family Tour</option>
-    </select>
-</div>
-<div class="container">
     <label>NOTE:</label>
     <p style="font-size: 14px;">If the Child age is 13 and above He/She should consider as Adult Need to Pay Advance ₹1000 per person </p>
     <p style="font-size: 14px;">Else He/She Under 13 No need to Pay Advance</p>
@@ -203,10 +185,29 @@ html, body {
     <label>Opened Group Tour</label>
     <p style="font-size: 15px;">Currently Opened group from Madurai</p>
     <p><span style="font-size: 14px; font-weight: bold;">May 01 2025</span><span style="font-size: 14px;"> - MDU-KQN - Madurai to Kodaikanal</span></p>
-    <label>Date of Travel</label>
-    <input type="date" id="travel-date">
+<label>Tour Type</label>
+    <select id="tour-type">
+        <option value="" selected disabled>Choose</option>
+        <option value="group">Group Tour</option>
+        <option value="couple">Couple Tour</option>
+        <option value="family">Family Tour</option>
+    </select>
 </div>
+
+<div class="container" id="group-tour-options">
+    <label>Available Group Tours</label>
+    <select id="group-tour-select">
+        <option value="" selected disabled>Choose</option>
+        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 Madurai to Kodaikanal Hills Station Trip</option>
+        <!-- Add more group tour options here as needed -->
+        <!-- Format: date|departure|category|tourName -->
+    </select>
+</div>
+
+
 <div class="container">
+       <label>Date of Travel</label>
+    <input type="date" id="travel-date"> 
     <label>Departure From</label>
     <select id="departure">
         <option value="" selected disabled>Choose</option>
@@ -240,7 +241,7 @@ html, body {
 <div id="payment-container" class="container">
     <h2>Proceeding to Pay Advance Amount</h2>
     <p>Advance For Per Head is ₹1000</p>
-    <p>Total Advance Amount for <span id="total-persons">0</span> Adult is <span id="total-amount">₹0</span></p>
+    <p>Total Advance Amount for <span id="total-persons">0</span> Persons is <span id="total-amount">₹0</span></p>
     <button id="upi-button" style="background: #e65100; color: white; font-size: 16px; border: none; padding: 6px 12px; cursor: pointer; border-radius: 5px; width: auto; display: block; margin: 10px auto;">
         Pay Advance
     </button>
@@ -252,15 +253,47 @@ html, body {
 <div class="container2">
     <button id="submit-btn" class="submit-btn">Submit</button>
 </div>
-<div class="container2" style=" text-align: center; padding: 10px 0; font-size: 12px;">
+<div style="text-align: center; padding: 10px 0; font-size: 12px;">
     <p>© 2025 All Rights Reserved By Zutriva</p>
 </div>
-
-
 
 <script>
 document.getElementById("tour-type").addEventListener("change", function() {
     let tourType = this.value;
+    let groupTourContainer = document.getElementById("group-tour-options");
+    let travelDate = document.getElementById("travel-date");
+    let tourCategory = document.getElementById("tour-category");
+    let tourList = document.getElementById("tour-list");
+    let fromMadurai = document.getElementById("from-madurai");
+    let tourListContainer = document.getElementById("tour-list-container");
+    let groupTourSelect = document.getElementById("group-tour-select");
+    let departureSelect = document.getElementById("departure");
+
+    // Reset all fields when changing tour type
+    travelDate.value = "";
+    tourCategory.value = "";
+    tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+    groupTourSelect.value = "";
+    departureSelect.value = "";
+    document.getElementById("payment-container").style.display = "none";
+    document.getElementById("qr-container").style.display = "none";
+    fromMadurai.style.display = "none";
+    tourListContainer.style.display = "none";
+
+    if (tourType === "group") {
+        groupTourContainer.style.display = "block";
+        travelDate.disabled = true;
+        tourCategory.disabled = true;
+        tourList.disabled = true;
+        departureSelect.disabled = true;
+    } else {
+        groupTourContainer.style.display = "none";
+        travelDate.disabled = false;
+        tourCategory.disabled = false;
+        tourList.disabled = false;
+        departureSelect.disabled = false;
+    }
+
     let personsInput = document.getElementById("persons");
     let persons = parseInt(personsInput.value) || 0;
 
@@ -278,6 +311,76 @@ document.getElementById("tour-type").addEventListener("change", function() {
     let amount = (parseInt(personsInput.value) || 0) * 1000;
     document.getElementById("total-persons").textContent = personsInput.value || "0";
     document.getElementById("total-amount").textContent = `₹${amount}`;
+});
+
+document.getElementById("group-tour-select").addEventListener("change", function() {
+    let selectedTour = this.value;
+    let [date, departure, category, tourName] = selectedTour ? selectedTour.split("|") : ["", "", "", ""];
+    
+    let travelDate = document.getElementById("travel-date");
+    let tourCategory = document.getElementById("tour-category");
+    let tourList = document.getElementById("tour-list");
+    let departureSelect = document.getElementById("departure");
+    let fromMadurai = document.getElementById("from-madurai");
+    let tourListContainer = document.getElementById("tour-list-container");
+
+    if (selectedTour) {
+        travelDate.value = date;
+        departureSelect.value = departure;
+        tourCategory.value = category;
+        tourList.innerHTML = `<option value="${tourName}" selected>${tourName}</option>`;
+        
+        // Show the containers for group tour selection
+        if (departure === "madurai") {
+            fromMadurai.style.display = "block";
+        }
+        tourListContainer.style.display = "block";
+        document.getElementById("payment-container").style.display = "block";
+        document.getElementById("qr-container").style.display = "block";
+        
+        let persons = document.getElementById("persons").value;
+        let amount = persons * 1000;
+        document.getElementById("upi-button").onclick = function() {
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+        };
+    } else {
+        travelDate.value = "";
+        departureSelect.value = "";
+        tourCategory.value = "";
+        tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+        fromMadurai.style.display = "none";
+        tourListContainer.style.display = "none";
+        document.getElementById("payment-container").style.display = "none";
+        document.getElementById("qr-container").style.display = "none";
+    }
+});
+
+document.getElementById("travel-date").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("departure").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("tour-category").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("tour-list").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
 });
 
 document.getElementById("persons").addEventListener("input", function() {
@@ -397,6 +500,7 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
             document.getElementById("tour-list-container").style.display = "none";
             document.getElementById("payment-container").style.display = "none";
             document.getElementById("qr-container").style.display = "none";
+            document.getElementById("group-tour-options").style.display = "none";
             document.getElementById("total-persons").textContent = "0";
             document.getElementById("total-amount").textContent = "₹0";
             setTimeout(() => {
@@ -477,13 +581,15 @@ document.getElementById("tour-category").addEventListener("change", function() {
 });
 
 document.getElementById("tour-list").addEventListener("change", function() {
-    let persons = document.getElementById("persons").value;
-    let amount = persons * 1000;
-    document.getElementById("upi-button").onclick = function() {
-        window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
-    };
-    document.getElementById("payment-container").style.display = "block";
-    document.getElementById("qr-container").style.display = "block";
+    if (document.getElementById("tour-type").value !== "group") {
+        let persons = document.getElementById("persons").value;
+        let amount = persons * 1000;
+        document.getElementById("upi-button").onclick = function() {
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+        };
+        document.getElementById("payment-container").style.display = "block";
+        document.getElementById("qr-container").style.display = "block";
+    }
 });
 </script>
 </body>
