@@ -736,7 +736,7 @@ document.getElementById("tour-list").addEventListener("change", function() {
         let persons = document.getElementById("persons").value;
         let amount = persons * 1000;
         document.getElementById("upi-button").onclick = function() {
-            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20to%20Zutriva`;
         };
         document.getElementById("payment-container").style.display = "block";
         document.getElementById("qr-container").style.display = "block";
