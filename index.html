@@ -153,7 +153,7 @@
 </div>
 <div class="container">
     <label>Name of Others</label>
-iseur    <input type="text" id="others" placeholder='Please use "," Eg: Nila, Surya or Nan.' style="color: white;">
+    <input type="text" id="others" placeholder='Please use "," Eg: Nila, Surya or Nan.' style="color: white;">
     <label>Relations</label>
     <input type="text" id="relations" placeholder='Wife, Son, Daughter - No Unmarried Lovers' style="color: white;">
 </div>
@@ -368,43 +368,25 @@ iseur    <input type="text" id="others" placeholder='Please use "," Eg: Nila, Su
         }
     });
 
-    // Prevent Interaction in Group Mode with Conditional Alerts
+    // Prevent Interaction in Group Mode
     document.getElementById("travel-date").addEventListener("click", function(e) {
-        const tourType = document.getElementById("tour-type").value;
-        const groupTourSelected = document.getElementById("group-tour-select").value;
-        if (tourType === "group") {
+        if (document.getElementById("tour-type").value === "group") {
             e.preventDefault();
-            if (groupTourSelected) {
-                alert("Available group can't be edited else try couple or family private tour");
-            } else {
-                alert("Choose the opened available group tour");
-            }
+            alert("Choose the opened available group tour");
         }
     });
 
     document.getElementById("departure").addEventListener("click", function(e) {
-        const tourType = document.getElementById("tour-type").value;
-        const groupTourSelected = document.getElementById("group-tour-select").value;
-        if (tourType === "group") {
+        if (document.getElementById("tour-type").value === "group") {
             e.preventDefault();
-            if (groupTourSelected) {
-                alert("Available group can't be edited else try couple or family private tour");
-            } else {
-                alert("Choose the opened available group tour");
-            }
+            alert("Choose the opened available group tour");
         }
     });
 
     document.getElementById("tour-category").addEventListener("click", function(e) {
-        const tourType = document.getElementById("tour-type").value;
-        const groupTourSelected = document.getElementById("group-tour-select").value;
-        if (tourType === "group") {
+        if (document.getElementById("tour-type").value === "group") {
             e.preventDefault();
-            if (groupTourSelected) {
-                alert("Available group can't be edited else try couple or family private tour");
-            } else {
-                alert("Choose the opened available group tour");
-            }
+            alert("Choose the opened available group tour");
         }
     });
 
