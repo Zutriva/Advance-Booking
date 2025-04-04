@@ -297,18 +297,18 @@
 <script>
     
 function fillWhatsAppNumber() {
-        const mobile = document.getElementById('mobile').value;
-        const checkbox = document.getElementById('sameNumber');
-        const whatsapp = document.getElementById('whatsapp');
+    const mobile = document.getElementById('mobile').value;
+    const checkbox = document.getElementById('sameNumber');
+    const whatsapp = document.getElementById('whatsapp');
 
-        if (checkbox.checked) {
-            whatsapp.value = mobile;
-            whatsapp.readOnly = true;
-        } else {
-            whatsapp.value = "";
-            whatsapp.readOnly = false;
-        }
+    if (checkbox.checked) {
+        whatsapp.value = mobile;
+        whatsapp.readOnly = true;
+    } else {
+        whatsapp.value = "";
+        whatsapp.readOnly = false;
     }
+}
 
 function toggleChildProof() {
     const children = document.getElementById("children").value;
@@ -316,12 +316,12 @@ function toggleChildProof() {
     proofSection.style.display = children >= 1 ? "block" : "none";
 }
     
-    function syncWhatsAppCheckbox() {
-        const checkbox = document.getElementById('sameNumber');
-        if (checkbox.checked) {
-            fillWhatsAppNumber(); // keep WhatsApp updated if typing in Mobile
-        }
+function syncWhatsAppCheckbox() {
+    const checkbox = document.getElementById('sameNumber');
+    if (checkbox.checked) {
+        fillWhatsAppNumber();
     }
+}
 
 document.getElementById("tour-type").addEventListener("change", function() {
     let tourType = this.value;
@@ -348,7 +348,7 @@ document.getElementById("tour-type").addEventListener("change", function() {
     coimbatoreContainer.style.display = "none";
 
     if (tourType === "group") {
-        groupTourContainer.style.display = "block"; // Show Available Group Tours
+        groupTourContainer.style.display = "block";
         travelDate.disabled = true;
         tourCategory.disabled = true;
         tourList.disabled = true;
@@ -412,7 +412,7 @@ document.getElementById("group-tour-select").addEventListener("change", function
         let persons = document.getElementById("persons").value;
         let amount = persons * 1000;
         document.getElementById("upi-button").onclick = function() {
-            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20to%20Zutriva`;
         };
     } else {
         travelDate.value = "";
@@ -427,17 +427,18 @@ document.getElementById("group-tour-select").addEventListener("change", function
     }
 });
 
-document.getElementById("travel-date").addEventListener("focus", function() {
+// Fixed event listeners for travel-date and departure
+document.getElementById("travel-date").addEventListener("click", function(e) {
     if (document.getElementById("tour-type").value === "group") {
+        e.preventDefault();
         alert("Choose the opened available group tour");
-        this.blur();
     }
 });
 
-document.getElementById("departure").addEventListener("focus", function() {
+document.getElementById("departure").addEventListener("click", function(e) {
     if (document.getElementById("tour-type").value === "group") {
+        e.preventDefault();
         alert("Choose the opened available group tour");
-        this.blur();
     }
 });
 
@@ -454,7 +455,7 @@ document.getElementById("departure").addEventListener("change", function() {
     document.getElementById("qr-container").style.display = "none";
 
     if (departure === "madurai") {
-        fromMadurai.style.display = "block"; // Show Tour Category for Madurai
+        fromMadurai.style.display = "block";
         coimbatoreContainer.style.display = "none";
     } else if (departure === "coimbatore") {
         fromMadurai.style.display = "none";
@@ -465,17 +466,17 @@ document.getElementById("departure").addEventListener("change", function() {
     }
 });
 
-document.getElementById("tour-category").addEventListener("focus", function() {
+document.getElementById("tour-category").addEventListener("click", function(e) {
     if (document.getElementById("tour-type").value === "group") {
+        e.preventDefault();
         alert("Choose the opened available group tour");
-        this.blur();
     }
 });
 
-document.getElementById("tour-list").addEventListener("focus", function() {
+document.getElementById("tour-list").addEventListener("click", function(e) {
     if (document.getElementById("tour-type").value === "group") {
+        e.preventDefault();
         alert("Choose the opened available group tour");
-        this.blur();
     }
 });
 
@@ -533,226 +534,5 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
 
     for (let field of requiredFields) {
         let inputElement = document.getElementById(field.id);
-        if (!inputElement.value.trim()) {
-            alert(field.message);
-            inputElement.focus();
-            submitButton.disabled = false;
-            submitButton.textContent = "Submit";
-            submitButton.style.background = "#007BFF";
-            return;
-        }
-    }
-
-    let name = document.getElementById("name").value.trim();
-    let mobile = document.getElementById("mobile").value.trim();
-    let whatsapp = document.getElementById("whatsapp").value.trim();
-    let tourType = document.getElementById("tour-type").value;
-    let persons = document.getElementById("persons").value;
-    let others = document.getElementById("others").value.trim();
-    let relations = document.getElementById("relations").value.trim();
-    let travelDate = document.getElementById("travel-date").value;
-    let departure = document.getElementById("departure").value;
-    let tourCategory = document.getElementById("tour-category").value;
-    let tourList = document.getElementById("tour-list").value;
-    let paymentProof = document.getElementById("payment-proof").files[0];
-    let childProof = (children > 0 && tourType !== "couple") ? document.getElementById("child-proof").files[0] : null;
-
-    let readerPayment = new FileReader();
-    readerPayment.readAsDataURL(paymentProof);
-    readerPayment.onload = function() {
-        let base64Payment = readerPayment.result.split(',')[1];
-        
-        if (childProof) {
-            let readerChild = new FileReader();
-            readerChild.readAsDataURL(childProof);
-            readerChild.onload = function() {
-                let base64Child = readerChild.result.split(',')[1];
-                let data = {
-                    name: name,
-                    mobile: mobile,
-                    whatsapp: whatsapp,
-                    tourType: tourType,
-                    persons: persons,
-                    children: children,
-                    others: others,
-                    relations: relations,
-                    travelDate: travelDate,
-                    departure: departure,
-                    tourCategory: tourCategory,
-                    tourList: tourList,
-                    image: base64Payment,
-                    mimeType: paymentProof.type,
-                    imageName: paymentProof.name,
-                    childProofImage: base64Child,
-                    childProofMimeType: childProof.type,
-                    childProofImageName: childProof.name
-                };
-
-                fetch("https://script.google.com/macros/s/AKfycbxIcMzcbmEGyepJRSpWMLRFhKcDwhHDZ-Nzh0LQX9_qE9DEUFfv8LrCT39J-uYz3UG8NQ/exec", {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    headers: { "Content-Type": "application/json" },
-                    mode: "no-cors"
-                })
-                .then(() => {
-                    alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
-                    document.getElementById("name").value = "";
-                    document.getElementById("mobile").value = "";
-                    document.getElementById("whatsapp").value = "";
-                    document.getElementById("tour-type").value = "";
-                    document.getElementById("persons").value = "";
-                    document.getElementById("children").value = "0";
-                    document.getElementById("others").value = "";
-                    document.getElementById("relations").value = "";
-                    document.getElementById("travel-date").value = "";
-                    document.getElementById("departure").value = "";
-                    document.getElementById("tour-category").value = "";
-                    document.getElementById("tour-list").value = "";
-                    document.getElementById("payment-proof").value = "";
-                    document.getElementById("child-proof").value = "";
-                    document.getElementById("from-madurai").style.display = "none";
-                    document.getElementById("coimbatore-container").style.display = "none";
-                    document.getElementById("tour-list-container").style.display = "none";
-                    document.getElementById("payment-container").style.display = "none";
-                    document.getElementById("qr-container").style.display = "none";
-                    document.getElementById("group-tour-options").style.display = "none";
-                    document.getElementById("total-persons").textContent = "0";
-                    document.getElementById("total-amount").textContent = "₹0";
-                    setTimeout(() => {
-                        submitButton.disabled = false;
-                        submitButton.textContent = "Submit";
-                        submitButton.style.background = "#007BFF";
-                    }, 500);
-                })
-                .catch(error => {
-                    alert("Error: " + error.message);
-                    submitButton.disabled = false;
-                    submitButton.textContent = "Submit";
-                    submitButton.style.background = "#007BFF";
-                });
-            };
-        } else {
-            let data = {
-                name: name,
-                mobile: mobile,
-                whatsapp: whatsapp,
-                tourType: tourType,
-                persons: persons,
-                children: children,
-                others: others,
-                relations: relations,
-                travelDate: travelDate,
-                departure: departure,
-                tourCategory: tourCategory,
-                tourList: tourList,
-                image: base64Payment,
-                mimeType: paymentProof.type,
-                imageName: paymentProof.name
-            };
-
-            fetch("https://script.google.com/macros/s/AKfycbxIcMzcbmEGyepJRSpWMLRFhKcDwhHDZ-Nzh0LQX9_qE9DEUFfv8LrCT39J-uYz3UG8NQ/exec", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-                mode: "no-cors"
-            })
-            .then(() => {
-                alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
-                document.getElementById("name").value = "";
-                document.getElementById("mobile").value = "";
-                document.getElementById("whatsapp").value = "";
-                document.getElementById("tour-type").value = "";
-                document.getElementById("persons").value = "";
-                document.getElementById("children").value = "0";
-                document.getElementById("others").value = "";
-                document.getElementById("relations").value = "";
-                document.getElementById("travel-date").value = "";
-                document.getElementById("departure").value = "";
-                document.getElementById("tour-category").value = "";
-                document.getElementById("tour-list").value = "";
-                document.getElementById("payment-proof").value = "";
-                document.getElementById("child-proof").value = "";
-                document.getElementById("from-madurai").style.display = "none";
-                document.getElementById("coimbatore-container").style.display = "none";
-                document.getElementById("tour-list-container").style.display = "none";
-                document.getElementById("payment-container").style.display = "none";
-                document.getElementById("qr-container").style.display = "none";
-                document.getElementById("group-tour-options").style.display = "none";
-                document.getElementById("total-persons").textContent = "0";
-                document.getElementById("total-amount").textContent = "₹0";
-                setTimeout(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = "Submit";
-                    submitButton.style.background = "#007BFF";
-                }, 500);
-            })
-            .catch(error => {
-                alert("Error: " + error.message);
-                submitButton.disabled = false;
-                submitButton.textContent = "Submit";
-                submitButton.style.background = "#007BFF";
-            });
-        }
-    };
-});
-
-document.getElementById("tour-category").addEventListener("change", function() {
-    let tourCategory = this.value;
-    let tourList = document.getElementById("tour-list");
-    tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
-
-    const tours = {
-        "beach": [
-            "Chidambaram Beach Journey",
-            "Mahabalipuram Beach Journey",
-            "Rameshwaram Beach Journey",
-            "Kanyakumari Beach Journey",
-            "Thoothukudi Beach Journey",
-            "Velankanni Beach Journey"
-        ],
-        "hills": [
-            "Kolli Hills Station Trip",
-            "Kodaikanal Hills Station Trip",
-            "Ooty Hills Station Trip",
-            "Valparai Hills Station Trip",
-            "Yercaud Hills Station Trip"
-        ],
-        "temple": [
-            "Arupadai Murugan Temple Tour",
-            "Kanyakumari Temple Tour",
-            "Coimbatore Temple Tour",
-            "Chidambaram Temple Tour",
-            "Kumbakonam Temple Tour",
-            "Rameshwaram Temple Tour",
-            "Srirangam Temple Tour",
-            "Thanjavur Temple Tour",
-            "Thiruvannamalai Temple Tour",
-            "Velankanni Temple Tour"
-        ]
-    };
-
-    if (tours[tourCategory]) {
-        tours[tourCategory].forEach(tour => {
-            let option = document.createElement("option");
-            option.value = tour;
-            option.textContent = tour;
-            tourList.appendChild(option);
-        });
-    }
-    document.getElementById("tour-list-container").style.display = "block";
-});
-
-document.getElementById("tour-list").addEventListener("change", function() {
-    if (document.getElementById("tour-type").value !== "group") {
-        let persons = document.getElementById("persons").value;
-        let amount = persons * 1000;
-        document.getElementById("upi-button").onclick = function() {
-            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20-%20Balance%20Amount%20to%20Pay`;
-};
-        document.getElementById("payment-container").style.display = "block";
-        document.getElementById("qr-container").style.display = "block";
-    }
-});
-</script>
-</body>
-</html>
+        if (!inputElement.value || inputElement.value === "") {
+       
