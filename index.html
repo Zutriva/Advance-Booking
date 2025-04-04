@@ -234,7 +234,7 @@
     <label>Available Group Tours</label>
     <select id="group-tour-select">
         <option value="" selected disabled>Choose</option>
-        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 Madurai to Kodaikanal Hills Station Trip</option>
+        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 - Madurai to Kodaikanal Hills Station Trip</option>
     </select>
 </div>
 
@@ -584,7 +584,7 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
                     mode: "no-cors"
                 })
                 .then(() => {
-                    alert("Booking submitted successfully!");
+                    alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
                     document.getElementById("name").value = "";
                     document.getElementById("mobile").value = "";
                     document.getElementById("whatsapp").value = "";
@@ -646,7 +646,7 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
                 mode: "no-cors"
             })
             .then(() => {
-                alert("Booking submitted successfully!");
+                alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
                 document.getElementById("name").value = "";
                 document.getElementById("mobile").value = "";
                 document.getElementById("whatsapp").value = "";
