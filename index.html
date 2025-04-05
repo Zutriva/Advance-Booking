@@ -186,7 +186,7 @@
     <input type="text" id="name">
 
     <label>Mobile Number</label>
-    <input type="number" id="mobile" oninput="syncWhatsAppCheckbox()">
+    <input type="text" id="mobile" oninput="syncWhatsAppCheckbox()">
 
     <div class="checkbox-group">
         <input type="checkbox" id="sameNumber" onclick="fillWhatsAppNumber()">
@@ -194,7 +194,7 @@
     </div>
 
     <label>WhatsApp Number</label>
-    <input type="number" id="whatsapp">
+    <input type="text" id="whatsapp">
 </div>
 <div class="container">
     <label>NOTE:</label>
@@ -213,8 +213,7 @@
         <label>Child Proof (e.g., Aadhaar)</label>
         <input type="file" id="child-proof" accept="image/*">
     </div>
-</div>
-<div class="container">
+</div><div class="container">
 
     <label>Name of Others</label>
     <input type="text" id="others" placeholder='Please use "," Eg: Nila, Surya or Nan.' style="color: white;">
@@ -238,7 +237,7 @@
     <label>Available Group Tours</label>
     <select id="group-tour-select">
         <option value="" selected disabled>Choose</option>
-        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 - Madurai to Kodaikanal Hills Station Trip</option>
+        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 Madurai to Kodaikanal Hills Station Trip</option>
     </select>
 </div>
 
@@ -295,7 +294,6 @@
 </div>
 
 <script>
-    
 function fillWhatsAppNumber() {
         const mobile = document.getElementById('mobile').value;
         const checkbox = document.getElementById('sameNumber');
@@ -314,9 +312,9 @@ function toggleChildProof() {
     const children = document.getElementById("children").value;
     const proofSection = document.getElementById("child-proof-section");
     proofSection.style.display = children >= 1 ? "block" : "none";
-}
-    
-    function syncWhatsAppCheckbox() {
+} 
+
+   function syncWhatsAppCheckbox() {
         const checkbox = document.getElementById('sameNumber');
         if (checkbox.checked) {
             fillWhatsAppNumber(); // keep WhatsApp updated if typing in Mobile
@@ -412,7 +410,7 @@ document.getElementById("group-tour-select").addEventListener("change", function
         let persons = document.getElementById("persons").value;
         let amount = persons * 1000;
         document.getElementById("upi-button").onclick = function() {
-            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Balance%20Payment%20to%20Zutriva`;
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20to%20Zutriva`;
         };
     } else {
         travelDate.value = "";
@@ -595,7 +593,7 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
                     mode: "no-cors"
                 })
                 .then(() => {
-                    alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
+alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
                     document.getElementById("name").value = "";
                     document.getElementById("mobile").value = "";
                     document.getElementById("whatsapp").value = "";
@@ -650,14 +648,14 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
                 imageName: paymentProof.name
             };
 
-            fetch("https://script.google.com/macros/s/AKfycbxIcMzcbmEGyepJRSpWMLRFhKcDwhHDZ-Nzh0LQX9_qE9DEUFfv8LrCT39J-uYz3UG8NQ/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbxvKwWEL7AWOPeUt5CUm6_kAkepIaW6Rad9NKsdzuFiDJ9qWff5fqxIs7aJxiGE2GAZPA/exec", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
                 mode: "no-cors"
             })
             .then(() => {
-                alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
+alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
                 document.getElementById("name").value = "";
                 document.getElementById("mobile").value = "";
                 document.getElementById("whatsapp").value = "";
